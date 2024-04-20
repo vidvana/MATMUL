@@ -136,6 +136,32 @@ Matrix Matrix::operator*(const Matrix& mat) {
     return result;
 }
 
+Matrix Matrix::operator+(const Matrix& mat) {
+    if (this->x_size != mat.x_size && this->y_size != mat.y_size ) {
+        throw runtime_error("Can't add matrices:\nTheir sizes are not equal.\n");
+    }
+    Matrix result = Matrix(this->x_size, this->y_size);
+    for (int y = 0; y < this->y_size; y++) {
+        for (int x = 0; x<mat.x_size; x++) {
+            result.setCell(x, y, this->cells[x][y] + mat.getCell(x, y));
+        }
+    }
+    return result;
+}
+
+Matrix Matrix::operator-(const Matrix& mat) {
+    if (this->x_size != mat.x_size && this->y_size != mat.y_size ) {
+        throw runtime_error("Can't subtract matrices:\nTheir sizes are not equal.\n");
+    }
+    Matrix result = Matrix(this->x_size, this->y_size);
+    for (int y = 0; y < this->y_size; y++) {
+        for (int x = 0; x<mat.x_size; x++) {
+            result.setCell(x, y, this->cells[x][y] - mat.getCell(x, y));
+        }
+    }
+    return result;
+}
+
 void Matrix::setCell(int x, int y, float num) {
     this->cells[x][y] = num;
 }

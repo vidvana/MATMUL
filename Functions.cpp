@@ -20,6 +20,9 @@ float norm(const Matrix v) {
 
 Matrix jacobi(const Matrix A, const Matrix b) {
     Matrix D = A.diagonal();
+    Matrix L = A.tril();
+    Matrix U = A.triu();
+    Matrix x = Matrix(1.0, A.get_x(), 1);
     Matrix result = Matrix(1, 1);
     return result;
 }

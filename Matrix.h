@@ -16,6 +16,8 @@ public:
     Matrix(int x_size, int y_size, float (*func)(int, int), int num);
     Matrix(float n, int x_size, int y_size); // ones
     Matrix operator*(const Matrix& mat);
+    Matrix operator+(const Matrix& mat);
+    Matrix operator-(const Matrix& mat);
     Matrix diagonal() const;
     Matrix tril() const;
     Matrix triu() const;

@@ -95,6 +95,9 @@ int main() {
         tril.print();
         Matrix triu = m2.triu();
         triu.print();
+
+        Matrix result2 = m2 - m2;
+        result2.print();
     }
 
 
