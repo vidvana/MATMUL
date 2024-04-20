@@ -91,6 +91,10 @@ int main() {
         m2.print();
         Matrix diagonal = m2.diagonal();
         diagonal.print();
+        Matrix tril = m2.tril();
+        tril.print();
+        Matrix triu = m2.triu();
+        triu.print();
     }
 
 

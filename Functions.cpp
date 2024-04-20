@@ -19,6 +19,7 @@ float norm(const Matrix v) {
 }
 
 Matrix jacobi(const Matrix A, const Matrix b) {
+    Matrix D = A.diagonal();
     Matrix result = Matrix(1, 1);
     return result;
 }

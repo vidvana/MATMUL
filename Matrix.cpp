@@ -153,7 +153,7 @@ int Matrix::get_y() const {
 }
 
 
-Matrix Matrix::diagonal() {
+Matrix Matrix::diagonal() const {
     Matrix mat = Matrix(this->x_size, this->y_size);
     int max_n = min(this->x_size, this->y_size);
     for (int n = 0; n < max_n; n++) {
@@ -162,11 +162,27 @@ Matrix Matrix::diagonal() {
     return mat;
 }
 
-Matrix Matrix::tril() {
-    return Matrix(0, 0);
+Matrix Matrix::tril() const {
+    Matrix mat = Matrix(this->x_size, this->y_size);
+    for (int y = 0; y < this->y_size; y++) {
+        for (int x = 0; x < mat.x_size; x++) {
+            if (y > x) {
+                mat.setCell(x, y, this->getCell(x, y));
+            }
+        }
+    }
+    return mat;
 }
 
-Matrix Matrix::triu() {
-    return Matrix(0, 0);
+Matrix Matrix::triu() const{
+    Matrix mat = Matrix(this->x_size, this->y_size);
+    for (int y = 0; y < this->y_size; y++) {
+        for (int x = 0; x < mat.x_size; x++) {
+            if (y < x) {
+                mat.setCell(x, y, this->getCell(x, y));
+            }
+        }
+    }
+    return mat;
 }
 
