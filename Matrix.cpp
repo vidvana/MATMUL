@@ -1,6 +1,7 @@
 //
 // Created by julia on 4/18/24.
 //
+#pragma once
 #import <iostream>
 #include <cmath>
 #include "Matrix.h"
@@ -60,6 +61,22 @@ Matrix::Matrix(int x_size, int y_size, float a1, float a2, float a3) {
     printf("Matrix created.\n");
 }
 
+Matrix::Matrix(float n, int x_size, int y_size) {
+    this->y_size = y_size;
+    this->x_size = x_size;
+    this->cells = (float **)malloc(x_size * sizeof(float *));
+    for (int i = 0; i < x_size; i++) {
+        cells[i] = (float *)malloc(y_size * sizeof(float));
+    }
+    for (int i = 0; i < this->y_size; i++) {
+        for (int j = 0; j< this->x_size; j++) {
+            this->cells[j][i] = n;
+        }
+    }
+    printf("Matrix created.\n");
+}
+
+
 
 Matrix::~Matrix() {
     for (int i = 0; i < this->x_size; i++) {
@@ -98,6 +115,7 @@ Matrix::Matrix(int x_size, int y_size, float (*func)(int, int), int num) {
 
         }
     }
+    printf("Matrix (vector to be more specific) created.\n");
 
 }
 
@@ -115,7 +133,6 @@ Matrix Matrix::operator*(const Matrix& mat) {
             result.setCell(x, y, val);
         }
     }
-
     return result;
 }
 
@@ -126,3 +143,30 @@ void Matrix::setCell(int x, int y, float num) {
 float Matrix::getCell(int x, int y) const {
     return this->cells[x][y];
 }
+
+int Matrix::get_x() const {
+    return this->x_size;
+}
+
+int Matrix::get_y() const {
+    return this->y_size;
+}
+
+
+Matrix Matrix::diagonal() {
+    Matrix mat = Matrix(this->x_size, this->y_size);
+    int max_n = min(this->x_size, this->y_size);
+    for (int n = 0; n < max_n; n++) {
+        mat.setCell(n, n, this->getCell(n, n));
+    }
+    return mat;
+}
+
+Matrix Matrix::tril() {
+    return Matrix(0, 0);
+}
+
+Matrix Matrix::triu() {
+    return Matrix(0, 0);
+}
+

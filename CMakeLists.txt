@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(MatMul main.cpp
         Matrix.cpp
         Matrix.h
+        Functions.cpp
+        Functions.h
 )
